@@ -10,25 +10,33 @@ This repository contains a Django web application for managing users, businesses
    git clone https://github.com/louayamor/Innovest-BackOffice.git
    
 Create a virtual environment (optional but recommended):
+
     ```bash
     python -m venv env
 
 Activate the virtual environment:
 On Windows:
+
     ```bash
     .\env\Scripts\activate
 On macOS/Linux:
+
     ```bash
     source env/bin/activate
 
 Set up the Django project:
+
     ```bash
     python manage.py migrate
     python manage.py createsuperuser
+    
 Run the development server:
+
     ```bash
     python manage.py runserver
+    
 Usage
+
 Once the development server is running, you can access the following URLs:
 
 Admin Panel: http://localhost:8000/admin/
