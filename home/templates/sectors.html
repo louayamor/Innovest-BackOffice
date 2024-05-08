@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Main Content -->
+<div class="container-fluid">
+    <h1>Businesses per Sector</h1>
+    <div class="container mt-4">
+        <canvas id="sectorChart" width="400" height="400"></canvas>
+    </div>
+</div>
+<!-- End of Main Content -->
+
+<script>
+    const sectorData = JSON.parse('{{ sector_counts|escapejs }}');
+
+    const sectors = sectorData.map(item => item.sector);
+    const counts = sectorData.map(item => item.count);
+
+    const ctx = document.getElementById('sectorChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: sectors,
+            datasets: [{
+                label: 'Businesses per Sector',
+                data: counts,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'right',
+            },
+            title: {
+                display: true,
+                text: 'Businesses per Sector',
+                fontSize: 18,
+            },
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Total Businesses: {{ businesses_count }}</h1>
+
+<!-- Display Total Revenue and Total Profit -->
+<div class="container mt-4">
+  <h3>Total Revenue: ${{ total_revenue }}</h3>
+  <h3>Total Profit: ${{ total_profit }}</h3>
+</div>
+
+<div class="container mt-4">
+  <h1 class="mb-4">All Businesses</h1>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for business in businesses %}
+      <div class="col">
+        <div class="card h-100 shadow">
+          <img src="{{ business.image_blob }}" class="card-img-top" alt="Business Image">
+          <div class="card-body">
+            <h5 class="card-title">{{ business.name }}</h5>
+            <p class="card-text">{{ business.description }}</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Revenue: ${{ business.revenue }}</li>
+              <li class="list-group-item">Profit: ${{ business.profit }}</li>
+              <li class="list-group-item">Sector: {{ business.sector }}</li>
+              <li class="list-group-item">Country: {{ business.country }}</li>
+            </ul>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Created at: {{ business.created_at }}</small>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
